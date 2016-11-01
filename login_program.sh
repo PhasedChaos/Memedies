@@ -61,12 +61,14 @@ do
     	if [ "$enterPass" = "$paswrd" ];
         	then
     	clear
+        	echo \| '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' Welcome $uname
         	echo -------------------------------------
 		clear
         	count=1
 
 
     	else
+        	echo \|Sorry, wrong password.             \|
     		echo -------------------------------------
     	fi
 
@@ -74,6 +76,7 @@ do
     
 	else
     clear
+    	echo \|Sorry, that user does not exist.   \|
     	echo -------------------------------------
 	clear
 	fi
