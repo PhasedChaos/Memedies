@@ -38,19 +38,20 @@ echo sup
 while (($count == 0))
 do
 	echo -------------------------------------
-	echo Welcome to the Group Login Program
+	echo |Welcome to the Group Login Program |
 	echo -------------------------------------
-	echo Please enter your username\:
+	echo |Please enter your username\:       |
+	echo -------------------------------------
 	read uname
-echo -------------------------------------
 
 
 	enterName=$(grep "$uname" ~/Desktop/scripts/udata/user_list.txt)
 
 
-	echo Please enter your password\:
-	read paswrd
 	echo -------------------------------------
+	echo |Please enter your password\:       |
+	echo -------------------------------------
+	read paswrd
 
 
 	if [ "$enterName" ];
@@ -60,22 +61,24 @@ echo -------------------------------------
     	if [ "$enterPass" = "$paswrd" ];
         	then
     	clear
+        	echo | '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' Welcome $uname
         	echo -------------------------------------
-        	echo \ \ \ \ \ \ \ \ \ \ \ Welcome $uname
-        	echo -------------------------------------
+		clear
         	count=1
 
 
     	else
-        	echo Sorry, wrong password.
+        	echo |Sorry, wrong password.             |
+    		echo -------------------------------------
     	fi
 
 
     
 	else
     clear
-    	echo Sorry, that user does not exist.
+    	echo |Sorry, that user does not exist.   |
     	echo -------------------------------------
+	clear
 	fi
 done
 
@@ -87,8 +90,11 @@ count=0
 
 while (($count == 0))
 do
+
+clear
+
 echo -------------------------------------
-echo -e '\t'Commands available to you
+echo -e '\t'Commands available to you    |
 echo -------------------------------------
 
 
@@ -96,26 +102,31 @@ admin=$(awk '{print $6}' ~/Desktop/scripts/udata/temp.txt)
 if [ $admin = "1"  ];
     	then
     	{
-        	echo 1. Create user
-        	echo 2. Change password
-        	echo 3. Generate invoice
-        	echo 4. Add contacts to device
-        	echo 5. Place call
-        	echo 6. Check device call log
-        	echo 7. Check contacts
+        	echo |1. Create user                     |
+        	echo |2. Change password                 |
+        	echo |3. Generate invoice                |
+        	echo |4. Add contacts to device          |
+        	echo |5. Place call                      |
+        	echo |6. Check device call log           |
+        	echo |7. Check contacts                  |
+		echo -------------------------------------
         	echo Please enter the number of the menu you wish to enter
     	read menuSelect
     
     case $menuSelect in
     1)
-    	echo Please enter user name\:
+	echo -------------------------------------
+    	echo Please enter user name\:            |
+	echo -------------------------------------
     	read contAdd
     
-    	echo Please enter user password\:
+    	echo Please enter user password\:        |
+	echo -------------------------------------
     	read contPass
 
 
-    	echo Is User an admin? 1\/0\:
+    	echo Is User an admin? 1\/0\:            |
+	echo -------------------------------------
     	read contAdmin
     
     	cont="Username\s" $contAdd "\s password \s" $contPass "\s admin \s" $contAdmin "\n"
@@ -131,10 +142,9 @@ if [ $admin = "1"  ];
     temp=$uname
     while (($count == 0))
     do
-   	 echo -------------------------------------
-        	echo Please enter the username\:
-        	read uname
-   	 echo -------------------------------------    
+        	echo Please enter the username\:         |
+		echo -------------------------------------
+        	read uname  
     
         	enterName=$(grep "$uname"  ~/Desktop/scripts/udata/user_list.txt)
     
@@ -144,17 +154,17 @@ if [ $admin = "1"  ];
         	then
    	 {
    		 echo -------------------------------------
-       		 echo Please enter old password\:
+       		 echo Please enter old password\:         |
+		 echo -------------------------------------
        		 read paswrd
-       		 echo -------------------------------------
            		 echo $enterName > ~/Desktop/scripts/udata/temp.txt
            		 enterPass=$(awk '{print $4}' ~/Desktop/scripts/udata/temp.txt)
            		 if [ "$enterPass" = "$paswrd" ];
                 	then
    		 {
                		 echo -------------------------------------
-               		 echo Enter new password \for $uname
-               		 echo -------------------------------------
+               		 echo Enter new password \for $uname      |
+			 echo -------------------------------------
                		 read $temp    
            	 
           				 while (awk "{print $4}" = $paswrd)
@@ -176,7 +186,9 @@ if [ $admin = "1"  ];
     
             	else
    		 {
-                	echo Sorry, wrong password.
+			echo -------------------------------------
+                	echo Sorry, wrong password.              |
+			echo -------------------------------------
    		 }    
    	 	fi
 
@@ -185,8 +197,8 @@ if [ $admin = "1"  ];
         	else
    	 {
             	echo -------------------------------------
-            	echo Sorry, that user does not exist.
-            	echo -------------------------------------
+            	echo Sorry, that user does not exist.    |
+		echo -------------------------------------
    	 }
         	fi
     
@@ -198,7 +210,9 @@ if [ $admin = "1"  ];
     ;;
     
     3)
+		 echo -------------------------------------
    		 echo Do you want to create an invoice? \(Y\/n\)
+		 echo -------------------------------------
    		 read temp
     
    	 if [[$temp -eq Y] || [$temp -eq y]];
@@ -210,12 +224,16 @@ if [ $admin = "1"  ];
    		 elif [[$temp -eq N] || [$temp -eq n]];
    		 then
    	 {
-       		 echo Okay, maybe some other time.
+		 echo -------------------------------------
+       		 echo Okay, maybe some other time.        |
+		 echo -------------------------------------
    	 }
     
    		 else
    	 {
-       		 echo Invalid input, please try again.
+		 echo -------------------------------------
+       		 echo Invalid input, please try again.    |
+		 echo -------------------------------------
    	 }
 
 
@@ -223,10 +241,14 @@ if [ $admin = "1"  ];
     ;;
     
     4)
-   		 echo Please enter contact name\:
+		 echo -------------------------------------
+   		 echo Please enter contact name\:         |
+		 echo -------------------------------------
    		 read contAdd
     
-   		 echo Please enter contact number\:
+		 echo -------------------------------------
+   		 echo Please enter contact number\:       |
+		 echo -------------------------------------
    		 read contNum
     
    		 cont=(wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt)".\s" $contAdd "\sNumber\s" $contNum\n
@@ -235,7 +257,9 @@ if [ $admin = "1"  ];
     ;;
     
     5)
+	 echo -------------------------------------
    	 echo Please enter the name of the person you are calling
+	 echo -------------------------------------
    	 read temp
     
    	 $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
@@ -243,14 +267,18 @@ if [ $admin = "1"  ];
     ;;
     
     6)
+	 echo -------------------------------------
    	 echo Please the name of the user to check their call log\:
+	 echo -------------------------------------
    	 read temp
     
    	 cat ~/Desktop/scripts/udata/call_log/"$temp.txt"
     ;;
     
     7)    
+		 echo -------------------------------------
    		 echo Please enter the name of the user you want to check the contacts of\:
+	   	 echo -------------------------------------
    	 read temp
    	 
    	 cat ~/Desktop/scripts/udata/contacts/$temp.txt
@@ -263,22 +291,27 @@ if [ $admin = "1"  ];
 }
 else
 {
-    	echo 1. Add contacts to device
-        	echo 2. Place call
-        	echo 3. Check device call log
-        	echo 4. Check contacts
-        	echo 5. Check invoice
-        	echo 6. Pay bill
+   		echo |1. Add contacts to device          |
+        	echo |2. Place call                      |
+        	echo |3. Check device call log           |
+        	echo |4. Check contacts                  |
+        	echo |5. Check invoice                   |
+        	echo |6. Pay bill                        |
+		echo -------------------------------------
         	echo Please enter the number of the menu you wish to enter
         	read menuSelect
 
 
     case $menuSelect in
     1)
-   	 	echo Please enter contact name\:
+		echo -------------------------------------
+   	 	echo Please enter contact name\:         |
+		echo -------------------------------------
    	 	read contAdd
    	 
-   	 	echo Please enter contact number\:
+		echo -------------------------------------
+   	 	echo Please enter contact number\:       |
+		echo -------------------------------------
    	 	read contNum
    	 
    	 	cont=(wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt)".\s" $contAdd "\sNumber\s" $contNum\n
@@ -287,8 +320,10 @@ else
    	 ;;
 
 
-   	 2)
-   		 echo Please enter the name of the person you are calling    
+   	 2)|
+		 echo -------------------------------------
+   		 echo Please enter the name of the person you are calling
+		 echo -------------------------------------
    		 read temp
    	 
    	 $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
@@ -296,18 +331,25 @@ else
    	 ;;
     
    	 3)
+		echo -------------------------------------
    	 	cat ~/Desktop/scripts/udata/call_log/$uname".txt"
+		echo -------------------------------------
    	 ;;
     
    	 4)
+		echo -------------------------------------
    	 	cat ~/Desktop/scripts/udata/contacts/$uname".txt"
+		echo -------------------------------------
    	 ;;
     
    	 5)
+		echo -------------------------------------
    	 	cat ~/Desktop/scripts/udata/invoice/$uname".txt"
+		echo -------------------------------------
    	 ;;
     
    	 6)
+		echo -------------------------------------
    	 	echo Your invoice is\:
    	 	grep -i ~/Desktop/scripts/udata/invoice/$uname".txt"
    	 
