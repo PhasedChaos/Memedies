@@ -223,7 +223,7 @@ if [ $admin = "1"  ];
        		 "1" > ~/Desktop/scripts/udata/invoice/htp.txt
    	 }
     
-   		 elif [[$temp -eq N] \|\| [$temp -eq n]];
+   		 elif [[$temp -eq N] || [$temp -eq n]];
    		 then
    	 {
 		 echo -------------------------------------
