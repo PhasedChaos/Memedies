@@ -61,7 +61,7 @@ do
     	if [ "$enterPass" = "$paswrd" ];
         	then
     	clear
-        	echo \| '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' '\t' Welcome $uname
+        	echo \| '\t' '\t' '\s' '\s' '\s'Welcome $uname
         	echo -------------------------------------
 		clear
         	count=1
