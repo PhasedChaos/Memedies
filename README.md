@@ -6,4 +6,4 @@ Here is a list of things that need to be done still:
 
 2) Password check (I'm working on that)
 
-3) 
+3) Part 3 (Hopefully Chris and I can wrap our heads around it, if you have an idea, shoot)
