@@ -94,7 +94,7 @@ do
 clear
 
 echo -------------------------------------
-echo -e '\t'Commands available to you    \|
+echo -e\| '\t'Commands available to you    \|
 echo -------------------------------------
 
 
@@ -115,6 +115,8 @@ if [ $admin = "1"  ];
     
     case $menuSelect in
     1)
+    while (($count == 0))
+    do
 	echo -------------------------------------
     	echo \|Please enter user name\:           \|
 	echo -------------------------------------
@@ -130,15 +132,35 @@ if [ $admin = "1"  ];
     	echo \|Is User an admin? 1\/0\:           \|
 	echo -------------------------------------
     	read contAdmin
-    
+    	
+	if [ $(echo "$contPass" | tr -dc "[;digit;]") ]; then
+		if [ $(echo "$contPass" | tr -dc "[;lower;]") ]; then
+			if [ $(echo "$contPass" | tr -dc "[;upper;]") ]; then
     	cont="Username\s" $contAdd "\s password \s" $contPass "\s admin \s" $contAdmin "\n"
    	 
     	$cont >> ~/Desktop/scripts/udata/user_list.txt
    	 touch ~/Desktop/scripts/udata/call_log/"$contAdd.txt"
    	 touch ~/Desktop/scripts/udata/contacts/"$contAdd.txt"
    	 touch ~/Desktop/scripts/udata/invoice/"$contAdd.txt"
-    
-   	 
+	 		else
+   			{
+          		    	echo invalid password, please use capitals, lowercase, and numbers.
+   			}
+           		fi
+		else
+   		{
+          		   echo invalid password, please use capitals, lowercase, and numbers.
+   		}
+           	fi
+	else
+   	{
+          	echo invalid password, please use capitals, lowercase, and numbers.
+   	}
+        fi
+	
+	done
+	count=0
+   
     ;;
     2)
     temp=$uname
@@ -171,15 +193,26 @@ if [ $admin = "1"  ];
            	 
           				 while (awk "{print $4}" = $paswrd)
    			 do
-           			 	if [["$temp"=~[^a-zA-Z0-9]]];
-           		         	then
+           if [ $(echo "$contPass" | tr -dc "[;digit;]") ]; then
+		if [ $(echo "$contPass" | tr -dc "[;lower;]") ]; then
+			if [ $(echo "$contPass" | tr -dc "[;upper;]") ]; then
    				 {
            		    		 echo valid
    				 sed -e 's/$paswrd/$temp/g'~/Desktop/scripts/udata/user_list.txt  
    				 }
    	           		 	else
    				 {
-          		    			 echo invalid
+          		    			 echo invalid password, please use capitals, lowercase, and numbers.
+   				 }
+           			 	fi
+			else
+   				 {
+          		    			 echo invalid password, please use capitals, lowercase, and numbers.
+   				 }
+           			 	fi
+		else
+   				 {
+          		    			 echo invalid password, please use capitals, lowercase, and numbers.
    				 }
            			 	fi
            			 done  
