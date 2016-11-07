@@ -31,6 +31,9 @@ contAdmin=""
 contGet=""
 contNumSet=""
 
+invoice=""
+inv=""
+
 
 echo sup
 
@@ -250,29 +253,28 @@ if [ $admin = "1"  ];
 		 echo -------------------------------------
    		 read temp
     
-   	 if [[$temp -eq Y] || [$temp -eq y]];
-   		 then
-   	 {
-       		 "1" > ~/Desktop/scripts/udata/invoice/htp.txt
-   	 }
+   	 case $temp in
+   		 [yY] )
+                 inv=$(wc -l < ~/Desktop/scripts/udata/call_log/"$uname.txt")
+                 echo An invoice has been created.
+                
+;;
     
-   		 elif [[$temp -eq N] || [$temp -eq n]];
-   		 then
-   	 {
+   		 [nN] )
 		 echo -------------------------------------
        		 echo \|Okay, maybe some other time.       \|
 		 echo -------------------------------------
-   	 }
+
+;;
+   	 
     
-   		 else
-   	 {
+   		 *)
 		 echo -------------------------------------
        		 echo \|Invalid input, please try again.   \|
 		 echo -------------------------------------
-   	 }
 
-
-   	 fi
+;;
+   	 esac
     ;;
     
     4)
@@ -423,9 +425,3 @@ fi
 echo
 temp=""
 done
-
-
-
-
-
-
